@@ -43,7 +43,7 @@ enum CameraPreset: String, CaseIterable, Identifiable, Sendable {
         let vignette = CIFilter.vignette()
         vignette.inputImage = balanced
         vignette.intensity = self == .night ? 0.20 : 0.10
-        vignette.radius = max(image.extent.width, image.extent.height) * 0.72
+        vignette.radius = Float(max(image.extent.width, image.extent.height) * 0.72)
         return vignette.outputImage ?? balanced
     }
 }
