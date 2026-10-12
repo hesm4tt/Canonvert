@@ -1,7 +1,7 @@
 import SwiftUI
 
 @main
-struct DigifyApp: App {
+struct CanonvertApp: App {
     var body: some Scene {
         WindowGroup { ContentView() }
     }

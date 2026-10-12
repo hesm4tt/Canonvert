@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-# Create the SideStore source JSON for a released Digify IPA.
+# Create the SideStore source JSON for a released Canonvert IPA.
 # Usage: scripts/make-sidestore-feed.sh <ipa> <output-json> [release-tag]
 
 if [[ $# -lt 2 || $# -gt 3 ]]; then
@@ -12,7 +12,7 @@ fi
 ipa_path="$1"
 output_json="$2"
 release_tag="${3:-}"
-repo="hesm4tt/Digify"
+repo="hesm4tt/Canonvert"
 bundle_id="com.hesm4tt.digify"
 ipa_name="$(basename "$ipa_path")"
 
@@ -36,10 +36,11 @@ minimum_os=$(/usr/libexec/PlistBuddy -c 'Print :MinimumOSVersion' "$info_plist" 
 [[ -n "$minimum_os" ]] || minimum_os="16.0"
 photo_library_description=$(/usr/libexec/PlistBuddy -c 'Print :NSPhotoLibraryUsageDescription' "$info_plist")
 photo_add_description=$(/usr/libexec/PlistBuddy -c 'Print :NSPhotoLibraryAddUsageDescription' "$info_plist")
+camera_description=$(/usr/libexec/PlistBuddy -c 'Print :NSCameraUsageDescription' "$info_plist")
 release_date="$(date -u +%F)"
 ipa_size="$(stat -f '%z' "$ipa_path")"
 download_url="https://github.com/${repo}/releases/latest/download/${ipa_name}"
-feed_url="https://github.com/${repo}/releases/latest/download/digify.json"
+feed_url="https://github.com/${repo}/releases/latest/download/canonvert.json"
 icon_url="https://raw.githubusercontent.com/${repo}/main/docs/assets/icon.png"
 
 mkdir -p "$(dirname "$output_json")"
@@ -54,13 +55,14 @@ jq -n \
   --arg minOSVersion "$minimum_os" \
   --arg photoLibraryDescription "$photo_library_description" \
   --arg photoAddDescription "$photo_add_description" \
+  --arg cameraDescription "$camera_description" \
   --argjson size "$ipa_size" \
   '{
-    name: "Digify",
+    name: "Canonvert",
     identifier: "com.hesm4tt.digify.source",
     sourceURL: $feedURL,
     apps: [{
-      name: "Digify",
+      name: "Canonvert",
       bundleIdentifier: "com.hesm4tt.digify",
       developerName: "hesm4tt",
       subtitle: "Pocket camera color, full-resolution exports",
@@ -72,7 +74,8 @@ jq -n \
         entitlements: [],
         privacy: {
           NSPhotoLibraryUsageDescription: $photoLibraryDescription,
-          NSPhotoLibraryAddUsageDescription: $photoAddDescription
+          NSPhotoLibraryAddUsageDescription: $photoAddDescription,
+          NSCameraUsageDescription: $cameraDescription
         }
       },
       versions: [{
@@ -82,7 +85,7 @@ jq -n \
         downloadURL: $downloadURL,
         size: $size,
         minOSVersion: $minOSVersion,
-        localizedDescription: (if $releaseTag == "" then "Digify release." else "Digify " + $releaseTag + "." end)
+        localizedDescription: (if $releaseTag == "" then "Canonvert release." else "Canonvert " + $releaseTag + "." end)
       }]
     }]
   }' > "$output_json"
@@ -91,7 +94,7 @@ jq -e '
   (.apps | length == 1) and
   (.apps[0].category == "photo-video") and
   (.apps[0].appPermissions.entitlements == []) and
-  (.apps[0].appPermissions.privacy | has("NSPhotoLibraryUsageDescription") and has("NSPhotoLibraryAddUsageDescription")) and
+  (.apps[0].appPermissions.privacy | has("NSPhotoLibraryUsageDescription") and has("NSPhotoLibraryAddUsageDescription") and has("NSCameraUsageDescription")) and
   (.apps[0].versions | length == 1 and (.[0].buildVersion | type == "string"))
 ' "$output_json" >/dev/null
 

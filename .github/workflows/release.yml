@@ -56,10 +56,10 @@ jobs:
           set -euo pipefail
           xcodebuild \
             -project "$PROJECT_PATH" \
-            -scheme Digify \
+            -scheme Canonvert \
             -configuration Release \
             -destination 'generic/platform=iOS' \
-            -archivePath "$RUNNER_TEMP/Digify.xcarchive" \
+            -archivePath "$RUNNER_TEMP/Canonvert.xcarchive" \
             CODE_SIGNING_ALLOWED=NO \
             archive
 
@@ -69,10 +69,10 @@ jobs:
           TAG: ${{ steps.release.outputs.tag }}
         run: |
           set -euo pipefail
-          scripts/package-unsigned-ipa.sh "$RUNNER_TEMP/Digify.xcarchive" "$RUNNER_TEMP/Digify.ipa"
-          scripts/make-sidestore-feed.sh "$RUNNER_TEMP/Digify.ipa" "$RUNNER_TEMP/digify.json" "$TAG"
-          unzip -t "$RUNNER_TEMP/Digify.ipa"
-          jq -e '.apps[0] | (.bundleIdentifier == "com.hesm4tt.digify" and .category == "photo-video" and .appPermissions.entitlements == [] and (.appPermissions.privacy.NSPhotoLibraryUsageDescription | type == "string") and (.appPermissions.privacy.NSPhotoLibraryAddUsageDescription | type == "string") and (.versions[0].buildVersion | type == "string") and (.versions[0].downloadURL | type == "string"))' "$RUNNER_TEMP/digify.json" >/dev/null
+          scripts/package-unsigned-ipa.sh "$RUNNER_TEMP/Canonvert.xcarchive" "$RUNNER_TEMP/Canonvert.ipa"
+          scripts/make-sidestore-feed.sh "$RUNNER_TEMP/Canonvert.ipa" "$RUNNER_TEMP/canonvert.json" "$TAG"
+          unzip -t "$RUNNER_TEMP/Canonvert.ipa"
+          jq -e '.apps[0] | (.bundleIdentifier == "com.hesm4tt.digify" and .category == "photo-video" and .appPermissions.entitlements == [] and (.appPermissions.privacy.NSPhotoLibraryUsageDescription | type == "string") and (.appPermissions.privacy.NSPhotoLibraryAddUsageDescription | type == "string") and (.appPermissions.privacy.NSCameraUsageDescription | type == "string") and (.versions[0].buildVersion | type == "string") and (.versions[0].downloadURL | type == "string"))' "$RUNNER_TEMP/canonvert.json" >/dev/null
 
       - name: Create or update GitHub Release
         shell: bash
@@ -82,6 +82,6 @@ jobs:
         run: |
           set -euo pipefail
           if ! gh release view "$TAG" >/dev/null 2>&1; then
-            gh release create "$TAG" --title "Digify $TAG" --generate-notes
+            gh release create "$TAG" --title "Canonvert $TAG" --generate-notes
           fi
-          gh release upload "$TAG" "$RUNNER_TEMP/Digify.ipa" "$RUNNER_TEMP/digify.json" --clobber
+          gh release upload "$TAG" "$RUNNER_TEMP/Canonvert.ipa" "$RUNNER_TEMP/canonvert.json" --clobber

@@ -1,20 +1,20 @@
-# Digify
+# Canonvert
 
 <p align="center">
   <strong>Small camera energy. Full-resolution files.</strong><br>
   A native iOS photo editor for a Canon PowerShot ELPH 360 HS A-inspired look.
 </p>
 
-Digify takes a photo from your library or Files, applies an in-camera-style treatment on device, and saves a full-resolution result. The target camera is JPEG-only; Digify can develop supported DNG/Apple ProRAW inputs before applying the look. It does not claim that an edited photo was captured by a Canon camera.
+Canonvert takes a photo from your library or Files, applies an in-camera-style treatment on device, and saves a full-resolution result. Adjust color, contrast, warmth, flash lift, exposure, detail, and vignette; save custom looks locally for reuse. Take new photos with the built-in camera, a 3 × 3 grid, and maximum supported still-image quality; Apple ProRAW capture is available on supported iPhones (ProRes RAW is a video format). Export directly to Camera Roll or Files in HEIC or JPEG. The target camera is JPEG-only; Canonvert can develop supported DNG/Apple ProRAW inputs before applying the look. It does not claim that an edited photo was captured by a Canon camera.
 
 ## Status
 
-The project is under active development. There is no published release yet. When the first tagged release is published, these links will resolve:
+The project is under active development. Version 1.0.3 adds adjustable look controls, locally saved custom looks, Camera Roll export, and an in-app camera with Apple ProRAW support on compatible iPhones. The release assets are published from the `v1.0.3` tag.
 
-- **Direct IPA:** [Download Digify.ipa](https://github.com/hesm4tt/Digify/releases/latest/download/Digify.ipa)
-- **SideStore source:** [digify.json](https://github.com/hesm4tt/Digify/releases/latest/download/digify.json)
-- **Releases and source:** [github.com/hesm4tt/Digify](https://github.com/hesm4tt/Digify)
-- **Project site:** [hesm4tt.github.io/Digify](https://hesm4tt.github.io/Digify/), after GitHub Pages is enabled for this repository
+- **Direct IPA:** [Download Canonvert.ipa](https://github.com/hesm4tt/Canonvert/releases/latest/download/Canonvert.ipa)
+- **SideStore source:** [canonvert.json](https://github.com/hesm4tt/Canonvert/releases/latest/download/canonvert.json)
+- **Releases and source:** [github.com/hesm4tt/Canonvert](https://github.com/hesm4tt/Canonvert)
+- **Project site:** [hesm4tt.github.io/Canonvert](https://hesm4tt.github.io/Canonvert/).
 
 ## Install on a test device
 
@@ -23,42 +23,42 @@ Release IPAs are **unsigned**. The direct IPA URL downloads the package; it does
 ### SideStore
 
 1. Install and set up SideStore on the device using [SideStore's official guide](https://docs.sidestore.io/).
-2. In SideStore, add the source URL `https://github.com/hesm4tt/Digify/releases/latest/download/digify.json`.
-3. Install Digify from the source. SideStore will sign it as part of installation.
+2. In SideStore, add the source URL `https://github.com/hesm4tt/Canonvert/releases/latest/download/canonvert.json`.
+3. Install Canonvert from the source. SideStore will sign it as part of installation.
 
-If you prefer manual import, download `Digify.ipa` from the release and use SideStore's IPA import flow.
+If you prefer manual import, download `Canonvert.ipa` from the release and use SideStore's IPA import flow.
 
 ### LiveContainer
 
 1. Install and configure [LiveContainer](https://github.com/LiveContainer/LiveContainer) using its current setup instructions.
-2. Download `Digify.ipa` from the release, then import it into LiveContainer.
+2. Download `Canonvert.ipa` from the release, then import it into LiveContainer.
 
 LiveContainer support and app behavior depend on the LiveContainer version and its supported iOS/device configuration. The IPA remains unsigned; follow LiveContainer's current signing and import instructions.
 
 ## Build from source
 
-Open the Xcode project in Xcode and build the `Digify` scheme for an iOS 16 or later device. The tagged-release workflow builds an unsigned archive on a GitHub-hosted macOS runner and packages it as `Digify.ipa`.
+Open `Canonvert.xcodeproj` in Xcode and build the `Canonvert` scheme for an iOS 16 or later device. The tagged-release workflow builds an unsigned archive on a GitHub-hosted macOS runner and packages it as `Canonvert.ipa`.
 
 To create the same package locally after archiving:
 
 ```sh
-scripts/package-unsigned-ipa.sh /path/to/Digify.xcarchive /path/to/Digify.ipa
+scripts/package-unsigned-ipa.sh /path/to/Canonvert.xcarchive /path/to/Canonvert.ipa
 ```
 
 The packaging helper checks that the archived app uses bundle ID `com.hesm4tt.digify`. The SideStore feed generator reads the app's version and minimum OS version from the IPA:
 
 ```sh
-scripts/make-sidestore-feed.sh /path/to/Digify.ipa /path/to/digify.json v1.0.0
+scripts/make-sidestore-feed.sh /path/to/Canonvert.ipa /path/to/canonvert.json v1.0.0
 ```
 
 ## Releases
 
-Push a version tag such as `v1.0.0` to build and publish a GitHub Release. The workflow attaches `Digify.ipa` and `digify.json`. It uses only the repository-provided `GITHUB_TOKEN`; no signing secrets are required. GitHub Pages deploys the contents of `docs/` from the `main` branch when Pages is configured to use GitHub Actions.
+Push a version tag such as `v1.0.0` to build and publish a GitHub Release. The workflow attaches `Canonvert.ipa` and `canonvert.json`. It uses only the repository-provided `GITHUB_TOKEN`; no signing secrets are required. GitHub Pages deploys the contents of `docs/` from the `main` branch when Pages is configured to use GitHub Actions.
 
 ## Privacy
 
-Image selection, processing, and export are designed to happen on device. The app does not need a Digify account or a photo upload service.
+Image selection, processing, and export are designed to happen on device. The app does not need a Canonvert account or a photo upload service.
 
 ## License
 
-Digify's source code is provided under the MIT License; see [LICENSE](LICENSE).
+Canonvert's source code is provided under the MIT License; see [LICENSE](LICENSE).

@@ -35,7 +35,7 @@ output_ipa="$(cd "$(dirname "$output_ipa")" && pwd)/$(basename "$output_ipa")"
 staging_dir="$(mktemp -d)"
 trap 'rm -rf "$staging_dir"' EXIT
 mkdir -p "$staging_dir/Payload"
-ditto "$app_path" "$staging_dir/Payload/Digify.app"
+ditto "$app_path" "$staging_dir/Payload/$(basename "$app_path")"
 (cd "$staging_dir" && /usr/bin/zip -qry "$output_ipa" Payload)
 
 echo "Created unsigned IPA: $output_ipa"
