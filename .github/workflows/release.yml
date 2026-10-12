@@ -20,7 +20,7 @@ concurrency:
 
 jobs:
   build-and-release:
-    runs-on: macos-15
+    runs-on: xcode-27
     steps:
       - name: Check out source
         uses: actions/checkout@v4
