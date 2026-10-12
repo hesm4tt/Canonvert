@@ -7,3 +7,27 @@
 .disabled-link{opacity:.72;cursor:default;pointer-events:none}
 @media(max-width:600px){.topbar nav{display:flex;gap:10px;margin:0 auto 0 12px}.topbar nav a{font-size:8px;letter-spacing:-.04em}.top-cta{padding:8px;font-size:8px}.eyebrow{font-size:10px}.stage-caption,.stage-index{font-size:9px}.cam-top,.cam-bottom{font-size:8px}.cam-label.right{font-size:8px}.cam-badge{font-size:9px}.cam-badge b{font-size:8px}.stage-sticker,.stage-sticker span{font-size:9px}.look-label p,.look-label>span{font-size:9px}.look-label h3{font-size:12px}}
 @media(max-width:370px){.top-cta{display:none}.topbar nav{gap:8px}.topbar nav a{font-size:8px}}
+
+/* Readable controls, keyboard feedback, and comfortable mobile targets. */
+.skip-link{position:fixed;z-index:10;top:8px;left:8px;padding:12px 16px;background:var(--ink);color:#fff;transform:translateY(-160%);font:500 12px var(--mono)}
+.skip-link:focus{transform:translateY(0)}
+:where(a,button,[tabindex]):focus-visible{outline:3px solid #5947b8;outline-offset:3px}
+.button:active{transform:scale(.98)}
+.release-state{font-size:10px}
+.release-state b{font-size:9px}
+.install-foot{font-size:10px;color:#c1cdd2}
+.footer>p,.footer-links a,.footer-links span,.footer-code{font-size:10px}
+.footer-links a,.help-nav a{min-height:44px;display:flex;align-items:center}
+.footer-links span{color:#65717b}
+@media(max-width:600px){
+  .topbar nav{gap:8px}
+  .topbar nav a{font-size:10px;min-height:44px;white-space:nowrap}
+  .help-nav{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 12px;overflow:visible;white-space:normal}
+  .help-nav a{font-size:11px;line-height:1.35}
+}
+@media(max-width:430px){.top-cta{display:none}}
+@media(max-width:370px){.topbar .brand>span:last-child{display:none}.topbar nav{gap:12px}}
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{scroll-behavior:auto!important;animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
+  .ticker-track{animation:none!important}
+}
