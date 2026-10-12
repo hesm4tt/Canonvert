@@ -5,11 +5,11 @@
   A native iOS photo editor for a Canon PowerShot ELPH 360 HS A-inspired look.
 </p>
 
-Canonvert takes a photo from your library or Files, applies an in-camera-style treatment on device, and saves a full-resolution result. Adjust color, contrast, warmth, flash lift, exposure, detail, and vignette; save custom looks locally for reuse. Take new photos with the built-in camera, a 3 × 3 grid, and maximum supported still-image quality; Apple ProRAW capture is available on supported iPhones (ProRes RAW is a video format). Export directly to Camera Roll or Files in HEIC or JPEG. The target camera is JPEG-only; Canonvert can develop supported DNG/Apple ProRAW inputs before applying the look. It does not claim that an edited photo was captured by a Canon camera.
+Canonvert takes a photo from your library or Files, applies an in-camera-style treatment on device, and saves a full-resolution result. Adjust color, contrast, warmth, flash lift, exposure, detail, and vignette; save custom looks locally for reuse. Take new photos with the built-in camera, see the entire 3:4 viewfinder with a 3 × 3 grid, and capture at maximum supported still-image quality; Apple ProRAW capture is available on supported iPhones (ProRes RAW is a video format). Keep the edited preview pinned above the scrolling customizer, then choose HEIC or JPEG and Camera Roll or a Files location on the export screen. The target camera is JPEG-only; Canonvert can develop supported DNG/Apple ProRAW inputs before applying the look. It does not claim that an edited photo was captured by a Canon camera.
 
 ## Status
 
-The project is under active development. Version 1.0.3 adds adjustable look controls, locally saved custom looks, Camera Roll export, and an in-app camera with Apple ProRAW support on compatible iPhones. The release assets are published from the `v1.0.3` tag.
+The project is under active development. Version 1.0.4 clarifies the camera → customize → export flow: a full 3:4 viewfinder, pinned photo preview while you scroll through look controls, then explicit format and destination choices. The release assets are published from the `v1.0.4` tag.
 
 - **Direct IPA:** [Download Canonvert.ipa](https://github.com/hesm4tt/Canonvert/releases/latest/download/Canonvert.ipa)
 - **SideStore source:** [canonvert.json](https://github.com/hesm4tt/Canonvert/releases/latest/download/canonvert.json)
